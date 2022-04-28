@@ -1,0 +1,10 @@
+  "title": "World's Best Lasagna",
+  "link": "https://www.allrecipes.com/recipe/23600/worlds-best-lasagna/",
+  "total_time": "3 hr 15 min",
+  "ingredients": [
+    "Sweet italian sausage",
+    "lean ground beef",
+    "ricotta cheese",
+    "tomato sauce",
+    "lasagna noodles"
+  ]
