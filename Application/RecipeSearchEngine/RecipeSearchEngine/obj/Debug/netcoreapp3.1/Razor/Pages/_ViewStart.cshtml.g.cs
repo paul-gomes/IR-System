@@ -19,8 +19,15 @@ using RecipeSearchEngine;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 4 "C:\Users\apgomes\source\repos\PAUL\GradSchool\5. Spring2022\Information Retrieval\Project\IR-System\Application\RecipeSearchEngine\RecipeSearchEngine\Pages\_ViewImports.cshtml"
+using RecipeSearchEngine.Model;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7091c65830b0329e613be026ede8a57552863778", @"/Pages/_ViewStart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"df877eec0b81a39beb5d9feb747555897e9a0a88", @"/Pages/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ae497d8bb63a5366fd6a5f51d55218115177c9c3", @"/Pages/_ViewImports.cshtml")]
     public class Pages__ViewStart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

@@ -21,8 +21,28 @@
     </div>
 </div>
 <hr />
+<div id="spinner" class="d-flex justify-content-center hide">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>
+<div id="expandQuery" class="row justify-content-end hide">
+    <button type="submit" class="btn btn-primary mb-3" style="right:0;" onclick="expandQuery()">Expand Query</button>
+</div>
 <div class=" row mt-5">
     <div id="searchResult" class="col">
 
     </div>
+</div>
+
+<div id="pagination_btm" class="row justify-content-center hidden">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item active p_1"><a class="page-link" onclick="changePage(1)">1</a></li>
+            <li class="page-item p_2"><a class="page-link" onclick="changePage(2)">2</a></li>
+            <li class="page-item p_3"><a class="page-link" onclick="changePage(3)">3</a></li>
+            <li class="page-item p_4"><a class="page-link" onclick="changePage(4)">4</a></li>
+            <li class="page-item p_5"><a class="page-link" onclick="changePage(5)">5</a></li>
+        </ul>
+    </nav>
 </div>

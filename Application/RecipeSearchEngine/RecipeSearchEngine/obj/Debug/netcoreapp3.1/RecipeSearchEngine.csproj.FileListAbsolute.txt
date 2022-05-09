@@ -75,3 +75,4 @@ C:\Users\apgomes\source\repos\PAUL\GradSchool\5. Spring2022\Information Retrieva
 C:\Users\apgomes\source\repos\PAUL\GradSchool\5. Spring2022\Information Retrieval\Project\IR-System\Application\RecipeSearchEngine\RecipeSearchEngine\obj\Debug\netcoreapp3.1\RecipeSearchEngine.genruntimeconfig.cache
 C:\Users\apgomes\source\repos\PAUL\GradSchool\5. Spring2022\Information Retrieval\Project\IR-System\Application\RecipeSearchEngine\RecipeSearchEngine\obj\Debug\netcoreapp3.1\RecipeSearchEngine.csproj.CopyComplete
 C:\Users\apgomes\source\repos\PAUL\GradSchool\5. Spring2022\Information Retrieval\Project\IR-System\Application\RecipeSearchEngine\RecipeSearchEngine\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\apgomes\source\repos\PAUL\GradSchool\5. Spring2022\Information Retrieval\Project\IR-System\Application\RecipeSearchEngine\RecipeSearchEngine\obj\Debug\netcoreapp3.1\Razor\Pages\Components\SearchContent\default.cshtml.g.cs

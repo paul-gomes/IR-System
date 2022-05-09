@@ -83,7 +83,7 @@ for index, row in p_data.iterrows():
 
 
 #Assigning more weigts to the words in Title and Ingredients
-alpha = 0.5
+alpha = 0.8
 
 for key in  tf_idf:
     tf_idf[key] *= alpha
@@ -94,7 +94,24 @@ for key in tf_idf_title_ingredient:
 
 with open('../Data/tf-idf.pickle', 'wb') as handle:
     pickle.dump(tf_idf, handle, protocol=pickle.HIGHEST_PROTOCOL)
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 
 """
@@ -129,9 +146,15 @@ def gen_query_vector(query):
             pass
     return query_v
 
+def expand_query_vector(query_v, relevant_docs_v, irrelevant_doc):
+    alpha = 1
+    beta = 0.75
+    gamma = 0.15
+    avg_r_v = np.mean(relevant_docs_v, axis=0)
+    e_query = alpha * query_v + beta * avg_r_v - gamma * irrelevant_doc
+    return e_query
 
 def doc_query_similarity(k, query):
-    print("Cosine Similarity")
     p_query= Pre_Process(query).query_preprocess()
 
     print("\nQuery:", query)
@@ -148,11 +171,26 @@ def doc_query_similarity(k, query):
 
     print(out)
 
+def doc_query_similarity_with_query_expansion(k, query, relevant_docs_v):
+    print(relevant_docs_v)
+    print("")
+    p_query= Pre_Process(query).query_preprocess()
+    d_cosines = []
+    query_vector = gen_query_vector(p_query)
+    e_query_vector = expand_query_vector(query_vector, relevant_docs_v, doc_vector[-1])
+    for d in doc_vector:
+        d_cosines.append(cosine_similarity(e_query_vector, d))
 
+    out = np.array(d_cosines).argsort()[-k:][::-1]
+    print(out)
 
-doc_query_similarity(10, "Grilled Chicken")
+query = "beef stew"
+r_docs = [377, 760]
+doc_query_similarity(10, query)
+r_docs = [doc_vector[i] for i in r_docs]
+doc_query_similarity_with_query_expansion(10, query, r_docs)
+
 """
-
 
 
 

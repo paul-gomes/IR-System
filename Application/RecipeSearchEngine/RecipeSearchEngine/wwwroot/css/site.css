@@ -77,3 +77,11 @@ body {
     background-color: #f6f6f6;
 }
 
+.hidden{
+    display: none;
+}
+
+.hide{
+    visibility: hidden;
+}
+

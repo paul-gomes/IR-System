@@ -7,6 +7,7 @@ namespace RecipeSearchEngine.Model
 {
     public class Recipe
     {
+        public string DocId { get; set; }
         public string Title { get; set; }
         public string Ingredients { get; set; }
         public string Urls { get; set; }
