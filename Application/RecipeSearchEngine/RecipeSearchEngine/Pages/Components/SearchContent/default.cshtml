@@ -3,6 +3,7 @@
 
 @{
     int page = 1;
+    int recipeCount = 1; 
     string pclass = "page_1";
     foreach (var r in Model)
     {
@@ -36,7 +37,7 @@
             <div class="row">
                 <div class="col">
                     <h3><a href='@r.Urls' target="_blank">@r.Title</a></h3>
-                    <input class="form-check-input" type="checkbox" id="@r.DocId" style="right:0;">
+                    <input class="form-check-input r_@recipeCount" type="checkbox" id="@r.DocId" style="right:0;">
                     <h5>[Prepare Time: @ct]</h5>
                     <div class="row m-3 w-100">
                         <b>Ingredients: </b>
@@ -47,5 +48,6 @@
             <hr />
         </div>
         page++;
+        recipeCount++;
     }
 }

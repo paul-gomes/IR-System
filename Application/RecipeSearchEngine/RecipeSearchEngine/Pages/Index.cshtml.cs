@@ -49,12 +49,12 @@ namespace RecipeSearchEngine.Pages
             }
         }
 
-        public async Task<ActionResult> OnPostExpandQueryAsync([FromQuery] string query, [FromBody] List<string> relevant)
+        public async Task<ActionResult> OnPostExpandQueryAsync([FromQuery] string query, [FromQuery] string irrelevant, [FromBody] List<string> relevant)
         {
             try
             {
                 List<Recipe> recipes = new List<Recipe>();
-                var url = $"{_configuration.GetSection("Api_url").Value.ToString()}expand/{query}/{@String.Join(", ", relevant)}";
+                var url = $"{_configuration.GetSection("Api_url").Value.ToString()}expand/{query}/{irrelevant}/{@String.Join(", ", relevant)}";
                 using (var client = new HttpClient())
                 {
                     var response = await client.GetAsync(requestUri: url);

@@ -63,11 +63,12 @@ function expandQuery() {
         relevant.push($(this)[0].id);
     });
     var query = $("#queryTerm").val();
+    var irrelevant = $(".r_50")[0].id;
     if (relevant.length > 0 && query != "") {
         $("#spinner").removeClass("hide");
         $.ajax({
             type: "POST",
-            url: "?handler=ExpandQuery&query="+ query,
+            url: "?handler=ExpandQuery&query="+ query + "&irrelevant=" + irrelevant,
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("XSRF-TOKEN",
                     $('input:hidden[name="__RequestVerificationToken"]').val());

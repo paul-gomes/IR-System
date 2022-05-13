@@ -36,12 +36,12 @@ def gen_query_vector(query, N, total_vocab, term_df):
             pass
     return query_v
 
-def expand_query_vector(query_v, relevant_docs_v, irrelevant_doc):
+def expand_query_vector(query_v, relevant_docs_v, irrelevant_doc_v):
     alpha = 1
     beta = 0.75
     gamma = 0.15
     avg_r_v = np.mean(relevant_docs_v, axis=0)
-    e_query = alpha * query_v + beta * avg_r_v - gamma * irrelevant_doc
+    e_query = alpha * query_v + beta * avg_r_v - gamma * irrelevant_doc_v
     return e_query
     
 def doc_query_similarity(k, query, doc_vector, N, total_vocab, term_df):
@@ -55,11 +55,11 @@ def doc_query_similarity(k, query, doc_vector, N, total_vocab, term_df):
     return out
 
 
-def doc_query_similarity_with_query_expansion(k, query, doc_vector, N, total_vocab, term_df, relevant_docs_v):
+def doc_query_similarity_with_query_expansion(k, query, doc_vector, N, total_vocab, term_df, relevant_docs_v, irrelevant_doc_v):
     p_query= Pre_Process(query).query_preprocess()
     d_cosines = []
     query_vector = gen_query_vector(p_query, N, total_vocab, term_df)
-    e_query_vector = expand_query_vector(query_vector, relevant_docs_v, doc_vector[-1])
+    e_query_vector = expand_query_vector(query_vector, relevant_docs_v, irrelevant_doc_v)
     for d in doc_vector:
         d_cosines.append(cosine_similarity(e_query_vector, d))
 
@@ -109,9 +109,10 @@ def scored_relevent_docs(query):
     return jsonify(result)
 
 
-@app.route('/expand/<string:query>/<string:relevant_docs>/', methods=['GET'])
-def relevance_feedback(query, relevant_docs):
+@app.route('/expand/<string:query>/<string:irrelevant_doc>/<string:relevant_docs>/', methods=['GET'])
+def relevance_feedback(query, irrelevant_doc, relevant_docs):
     print(query)
+    print(irrelevant_doc)
     print(relevant_docs)
     relevant_docs = str(relevant_docs).split(",")
     print(relevant_docs)
@@ -140,7 +141,8 @@ def relevance_feedback(query, relevant_docs):
             pass
     
     relevant_docs_v = [doc_vector[int(i)] for i in relevant_docs]
-    s_vector = doc_query_similarity_with_query_expansion(50, query, doc_vector, N, total_vocab, term_df, relevant_docs_v)
+    irrelevant_doc_v = doc_vector[int(irrelevant_doc)]
+    s_vector = doc_query_similarity_with_query_expansion(50, query, doc_vector, N, total_vocab, term_df, relevant_docs_v, irrelevant_doc_v)
     print(s_vector)
     result = []
     for i in s_vector:
