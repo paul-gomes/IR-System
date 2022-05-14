@@ -9,7 +9,7 @@ from collections import Counter
 import pickle
 import math
 from pre_process import *
-
+import os
 
 nltk.download('stopwords')
 nltk.download('punkt')
@@ -24,17 +24,30 @@ p_data = data_p.data_preprocess()
 
 
 term_df = {}
+term_prox = {}
 for index, row in p_data.iterrows():
     for col in p_data.columns:
+        pos = {}
         words = word_tokenize(str(row[col]))
+        for i in range(len(words)): # we need the positions for term proximity
+            w = words[i]
+            try:
+                pos[w].append(i)
+            except:
+                pos[w] = [i]
+        
         for w in words:
             try:
                 term_df[w].add(index)
+                term_prox[str(index)+"__"+w].add(pos[w])
             except:
                 term_df[w] = {index}
+                term_prox[str(index)+"__"+w] = pos[w]
 
 with open('../Data/term-df.pickle', 'wb') as handle:
     pickle.dump(term_df, handle, protocol=pickle.HIGHEST_PROTOCOL)
+with open('../Data/term-prox.pickle', 'wb') as handle:
+    pickle.dump(term_prox, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 def doc_frequency(word):
